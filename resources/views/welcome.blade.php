@@ -69,6 +69,9 @@
                 <div class="title m-b-md">
                     TEAM_D_019
                 </div>
+                <div class="title m-b-md">
+                    Working 💪🏾
+                </div>
             </div>
         </div>
     </body>
