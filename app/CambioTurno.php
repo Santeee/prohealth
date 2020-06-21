@@ -33,4 +33,10 @@ class CambioTurno extends Model
     {
         return $this->belongsTo('App\Sector', 'sector_id');
     }
+
+    public function scopeLibres($query)
+    {
+        return $query->where('aceptado', false);
+    }
+
 }
