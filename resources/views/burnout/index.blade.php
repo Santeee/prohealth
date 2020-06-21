@@ -17,12 +17,12 @@
                             <ul class="list-group">
                                 <li class="list-group-item"><h2>This week</h2></li>
                                 <li class="list-group-item">
-                                    <h4>Requestes accepted: 10</h4>
-                                    Hours covered: 75 hrs.
+                                    <h4>Requestes accepted: {{ $cambios_cubiertos->count() }}</h4>
+                                    Hours covered: {{ $horas_cubiertas }} hrs. 
                                 </li>
                                 <li class="list-group-item">
-                                    <h4>Requests made: 4</h4>
-                                    Hours that cover me: 8Hrs.
+                                    <h4>Requests made: {{ $cambios_solicitados->count() }}</h4>
+                                    Hours that cover me: {{ $horas_solicitadas }}Hrs.
                                 </li>
                             </ul>
                         </div>
@@ -31,6 +31,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <canvas id="myChart"></canvas>
+                            <i class="pull-right">Graph data is illustrative
+                            </i>
                         </div>
                     </div>
                 </div>

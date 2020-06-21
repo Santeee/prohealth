@@ -19,7 +19,5 @@ Auth::routes();
 Route::get('cambios', 'CambioTurnoController@get');
 Route::post('cambios', 'CambioTurnoController@store');
 Route::post('cambios/{cambio_turno_id}/aceptar', 'CambioTurnoController@accept');
-Route::get('burnout', function(){
-    return view('burnout.index');
-});
+Route::get('burnout', 'UserController@burnout')->name('burnout.index');
 
