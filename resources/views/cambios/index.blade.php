@@ -53,8 +53,8 @@
                                     <li class="list-group-item" v-for="cambio in cambios">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 cambio-item-info">
-                                                <p>@{{ cambio.solicitante_id }}</p>
-                                                <p>@{{ cambio.sector_id }}</p>
+                                                <p>@{{ cambio.solicitante.name }}</p>
+                                                <p>@{{ cambio.sector.nombre }}</p>
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 cambio-item-info">
                                                 <p><strong>from</strong> @{{ cambio.hora_comienzo }}</p>
@@ -174,7 +174,7 @@
                 },
                 aceptarTurno: function(){
                     $('#defaultModal').modal('hide');
-                    alert('Turno aceptdo correctamente!');
+                    alert('We are working on it');
                 },
                 loadCambios: function(){
                     fetch('/cambios', {

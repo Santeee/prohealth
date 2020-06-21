@@ -17,6 +17,7 @@ class CambioTurno extends Model
         'solicitante_id',
         'sector_id'
     ];
+    protected $with = ['solicitante', 'sector'];
 
     public function solicitante()
     {
