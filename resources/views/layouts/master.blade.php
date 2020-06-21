@@ -75,7 +75,17 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="" data-close="true"><i class="material-icons">power_settings_new</i></a></li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <i class="material-icons">power_settings_new</i>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                     <!-- #END# Call Search -->
                 </ul>
             </div>
@@ -88,6 +98,11 @@
 
     <section class="content" style="margin-left: 10px;">
         <div class="container-fluid">
+            @guest
+                invitado...
+            @else
+                {{ Auth::user()->name }}
+            @endguest
             @yield('content')
         </div>
     </section>
