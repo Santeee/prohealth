@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('cambios', 'CambioTurnoController@get');
+Route::post('cambios', 'CambioTurnoController@store');
+Route::post('cambios/{cambio_id}/accept', 'CambioTurnoController@accept');

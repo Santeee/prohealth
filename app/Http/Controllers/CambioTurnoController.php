@@ -23,9 +23,10 @@ class CambioTurnoController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
+        // $user = Auth::user();
+        $user = "";
 
-        return view('index', $user);
+        return view('cambios.index', compact('user'));
     }
 
     /**
