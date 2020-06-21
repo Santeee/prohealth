@@ -34,12 +34,12 @@
                             <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 text-rigth">
                                 <div class="form-group">
                                     <div class="form-line" id="bs_datepicker_container">
-                                        <input type="text" class="form-control" placeholder="Please choose a date...">
+                                        <input type="text" id="dd" class="form-control" placeholder="Please choose a date..." v-model="fecha_solicitud">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2">
-                                <button class="btn btn-success"> Ask for </button>
+                                <button class="btn btn-success" @click="showModalCambio"> Ask for </button>
                             </div>
                         </div>
 
@@ -53,12 +53,12 @@
                                     <li class="list-group-item" v-for="cambio in cambios">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 cambio-item-info">
-                                                <p>@{{ cambio }}</p>
-                                                <p>@{{ cambio }}</p>
+                                                <p>@{{ cambio.solicitante_id }}</p>
+                                                <p>@{{ cambio.sector_id }}</p>
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 cambio-item-info">
-                                                <p>@{{ cambio }}</p>
-                                                <p>@{{ cambio }}</p>
+                                                <p><strong>from</strong> @{{ cambio.hora_comienzo }}</p>
+                                                <p><strong>to</strong> @{{ cambio.hora_fin }}</p>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 cambio-item-info">
                                                 <button type="button" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float" @click="confirmarAceptacion">
@@ -83,10 +83,68 @@
                         <h4 class="modal-title" id="defaultModalLabel">Accept</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Do you accept the request of @{{ cambio_selected.nombre_usuario }}</p>
+                        <p>Do you accept the request of @{{ cambio_selected.nombre_usuario }}?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link waves-effect" @click="aceptarTurno">ACCEPT</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Default Size -->
+        <div class="modal fade" id="requestModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Request</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>You will request a change for @{{ fecha_solicitud }} day</h4>
+                        <h5></h5>
+                        <form class="form-horizontal">
+                            {{-- <input type="hidden" value=@{{ fecha_solicitud }} name="dia"> --}}
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="hora_cominenzo">Start time:</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="hora_comienzo" class="form-control" placeholder="00:00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="hora_fin">End time:</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="hora_fin" class="form-control" placeholder="00:00">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="password_2">Sector:</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <select class="selectpicker" id="sector_id" name="sector_id">
+                                        @foreach ($sectores as $sector)
+                                            <option value="{{ $sector->id }}">{{ $sector->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" @click="solicitarCambio">ACCEPT</button>
                         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button>
                     </div>
                 </div>
@@ -106,7 +164,8 @@
             data: {
                 message: 'Hello Vue!',
                 cambios: [],
-                cambio_selected: ''
+                cambio_selected: '',
+                fecha_solicitud: '',
             },
             methods: {
                 confirmarAceptacion: function(){
@@ -126,6 +185,36 @@
                     .then((resp) => resp.json())
                     .then((data) => { this.cambios = data.cambios } )
                     .catch(err => console.log(err));
+                },
+                showModalCambio: function(){
+                    this.fecha_solicitud = $('#dd').val();
+                    $('#requestModal').modal('show');
+                },
+                solicitarCambio: function(e){
+                    e.preventDefault();
+                    let cambio_nuevo = {
+                        dia: this.fecha_solicitud,
+                        hora_comienzo: $('#hora_comienzo').val(),
+                        hora_fin: $('#hora_fin').val(),
+                        sector_id: $('#sector_id').val()
+                    }
+
+                    fetch('/cambios', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify(cambio_nuevo)
+                    })
+                    .then(res => res.json() )
+                    .then(data => {
+                        alert("Solicitud guardada!");
+                        this.loadCambios();
+                        $('#requestModal').modal('hide');
+                    })
+
                 }
             },
             created: function () {
@@ -137,5 +226,8 @@
             autoclose: true,
             container: '#bs_datepicker_container'
         });
+        $(function () {
+    $('select').selectpicker();
+});
     </script>
 @endsection

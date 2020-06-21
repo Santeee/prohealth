@@ -17,4 +17,5 @@ Route::get('/', 'CambioTurnoController@index')->name('index')->middleware('auth'
 
 Auth::routes();
 Route::get('cambios', 'CambioTurnoController@get');
+Route::post('cambios', 'CambioTurnoController@store');
 
