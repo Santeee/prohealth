@@ -12,6 +12,11 @@
     <div id="app">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <a href="{{ route('burnout') }}" class="btn btn-link pull-right">Burnout report</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <div class="row">

@@ -78,13 +78,21 @@
                     <!-- Call Search -->
                     <li>
                         @guest
+                        @else
+                        <a href="{{ route('index') }}" class="btn btn-link" style="position: float;">
+                            <i class="material-icons">report</i>
+                        </a>
+                        @endguest
+                    </li>
+                    <li>
+                        @guest
                             <a href="{{ route('login') }}"><i class="material-icons">person_outline</i></a>
                         @else
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            <i class="material-icons">power_settings_new</i>
-                        </a>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                <i class="material-icons">power_settings_new</i>
+                            </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
