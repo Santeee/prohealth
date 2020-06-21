@@ -21,9 +21,13 @@ Lastly, Prohealth’s proposal is offer both haste and transparency as in manage
 ## Contributing
 
 -Ana Lisa Andrada Oliveira - Medical Student
+
 -Carolina Montoya Torres - Industrial Enginner
+
 -Geraldo Milet - Innovation Coordinator
+
 -Halana Brito - Dental Student
+
 -Santiago Aguilar - Systems Analsyt
 
 ## License
