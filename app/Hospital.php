@@ -15,6 +15,6 @@ class Hospital extends Model
 
     public function cambios()
     {
-        return $this->hasManyThrough('App\User', App\CambioTurno);
+        return $this->hasManyThrough('App\CambioTurno', 'App\User', 'hospital_id', 'solicitante_id');
     }
 }

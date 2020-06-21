@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'CambioTurnoController@index')->name('index')->middleware('auth');
 
 Auth::routes();
+Route::get('cambios', 'CambioTurnoController@get');
+

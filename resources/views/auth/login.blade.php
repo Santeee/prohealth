@@ -35,7 +35,7 @@
         
                                     <div class="col-md-6">
                                         <div class="form-line">
-                                            <input id="username" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required placeholder="covid0, covid1, etc.." autofocus>
+                                            <input id="username" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required placeholder="nurse1, doctor2 ..." autofocus>
                                         </div>
         
                                         @error('email')

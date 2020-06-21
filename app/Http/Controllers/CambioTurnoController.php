@@ -36,7 +36,7 @@ class CambioTurnoController extends Controller
     {
         $cambios = Auth::user()->hospital->cambios;
         
-        return response()->json($cambios, 200);
+        return response()->json(['cambios' => $cambios], 200);
     }
 
     /**

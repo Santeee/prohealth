@@ -15,7 +15,6 @@ class CambioTurno extends Model
         'hora_comienzo',
         'hora_fin',
         'solicitante_id',
-        'receptor_id',
         'sector_id'
     ];
 

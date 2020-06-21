@@ -17,14 +17,14 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-6 col-md-6">
                                 <h2>
-                                    HOSPITAL REGIONAL DE USHUAIA
-                                    <small>Dirección: Leopoldo Lugones 1920</small>
+                                    {{ $user->hospital->nombre }}
+                                    <small>Dirección: {{ $user->hospital->direccion }}</small>
                                 </h2>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 text-right">
                                 <span style="font-weight: bold;">Disponible para turnos?</span>
                                 <div class="switch pull-right">
-                                    <label><input type="checkbox" checked=""><span class="lever switch-col-blue"></span></label>
+                                    <label><input type="checkbox" @if($user->disponible) checked="" @endif><span class="lever switch-col-blue"></span></label>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-        </div>>
+        </div>
 
         <!-- Default Size -->
         <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
@@ -105,7 +105,7 @@
             el: '#app',
             data: {
                 message: 'Hello Vue!',
-                cambios: ['asd','asd','asd','asd','asd','asd','asd','asd'],
+                cambios: [],
                 cambio_selected: ''
             },
             methods: {
@@ -116,10 +116,20 @@
                 aceptarTurno: function(){
                     $('#defaultModal').modal('hide');
                     alert('Turno aceptdo correctamente!');
+                },
+                loadCambios: function(){
+                    fetch('/cambios', {
+                            method: 'GET',
+                            headers: {
+                                Accept: 'application/json',
+                            }})
+                    .then((resp) => resp.json())
+                    .then((data) => { this.cambios = data.cambios } )
+                    .catch(err => console.log(err));
                 }
             },
             created: function () {
-                this.message = 'asdasd';
+                this.loadCambios();
             }
         })
 
