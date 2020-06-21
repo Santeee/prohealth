@@ -53,9 +53,9 @@ class CambioTurnoController extends Controller
     /**
      * Cuando un receptor acepta un cambio de turno..
      */
-    public function acept(Request $request, $cambio_turno_id)
+    public function accept(Request $request, $cambio_turno_id)
     {
-        $cambio_turno = CambioTurno::find('cambio_turno_id', $cambio_turno_id);
+        $cambio_turno = CambioTurno::find($cambio_turno_id);
         $cambio_turno = $this->cambioTurnoService->accept($cambio_turno, Auth::user());
         
         return response()->json($cambio_turno, 200);

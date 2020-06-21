@@ -64,7 +64,7 @@
                                                 <p><strong>to</strong> @{{ cambio.hora_fin }}</p>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 cambio-item-info">
-                                                <button type="button" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float" @click="confirmarAceptacion">
+                                                <button type="button" class="btn btn-success btn-circle-lg waves-effect waves-circle waves-float" @click="confirmarAceptacion(cambio)">
                                                     <i class="material-icons">call_missed_outgoing</i>
                                                 </button>
                                             </div>
@@ -86,7 +86,7 @@
                         <h4 class="modal-title" id="defaultModalLabel">Accept</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Do you accept the request of @{{ cambio_selected.nombre_usuario }}?</p>
+                        <p>Do you accept the request of @{{ name_selected }}?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-link waves-effect" @click="aceptarTurno">ACCEPT</button>
@@ -167,17 +167,42 @@
             data: {
                 message: 'Hello Vue!',
                 cambios: [],
-                cambio_selected: '',
+                cambio_selected: {},
+                name_selected: '',
                 fecha_solicitud: '',
             },
             methods: {
-                confirmarAceptacion: function(){
-                    this.cambio_selected = { nombre_usuario: 'Santiago aguilar' };
+                confirmarAceptacion: function(cambio){
+                    this.cambio_selected = cambio;
+                    this.name_selected = cambio.solicitante.name;
                     $('#defaultModal').modal('show');
                 },
                 aceptarTurno: function(){
-                    $('#defaultModal').modal('hide');
-                    alert('We are working on it');
+                    let datos = {
+                    }
+
+                    fetch('/cambios/'+this.cambio_selected.id+"/aceptar", {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify(datos)
+                    })
+                    .then(res => res.json() )
+                    .then(data => {
+                        console.log(data);
+                        if (data.id) {
+                            alert("Solicitud aceptada!");
+                            this.loadCambios();
+                            $('#defaultModal').modal('hide');
+                        } else {
+                            alert("ingrese todos los datos respetando el formato.");
+                        }
+                    })
+
+                   
                 },
                 loadCambios: function(){
                     fetch('/cambios', {
