@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\CambioTurnoService;
 use App\CambioTurno;
+use App\Sector;
 use Auth;
 
 class CambioTurnoController extends Controller
@@ -24,8 +25,8 @@ class CambioTurnoController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-        return view('cambios.index', compact('user'));
+        $sectores = Sector::all();
+        return view('cambios.index', compact('user', 'sectores'));
     }
 
     /**
@@ -35,7 +36,7 @@ class CambioTurnoController extends Controller
     public function get(Request $request)
     {
         $cambios = Auth::user()->hospital->cambios;
-        
+
         return response()->json(['cambios' => $cambios], 200);
     }
 
