@@ -32,6 +32,10 @@ Data such as work shift, gender, age, length of service, absence due to covid co
 
 Lastly, Prohealth’s proposal is offer both haste and transparency as in management as organization and assertiveness for workers. Avoiding overload and controlling their time of work, we believe that burnout syndrome can be avoided by improving professionals’s quality of life and coming back to the hospital ready to another battle. 
 
+THANK YOU
+
+#TEAM_D_019
+
 ## Contributing
 
 -Ana Lisa Andrada Oliveira - Medical Student
