@@ -106,7 +106,7 @@
             @guest
                 invitado...
             @else
-                {{ Auth::user()->name }}
+                
             @endguest
             @yield('content')
         </div>
