@@ -52,6 +52,9 @@
                                 <ul class="list-group">
                                     <li class="list-group-item" v-for="cambio in cambios">
                                         <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cambio-item-info">
+                                                <h5>@{{ cambio.dia }}</h5>
+                                            </div>
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 cambio-item-info">
                                                 <p>@{{ cambio.solicitante.name }}</p>
                                                 <p>@{{ cambio.sector.nombre }}</p>
@@ -210,9 +213,14 @@
                     })
                     .then(res => res.json() )
                     .then(data => {
-                        alert("Solicitud guardada!");
-                        this.loadCambios();
-                        $('#requestModal').modal('hide');
+                        console.log(data);
+                        if (data.id) {
+                            alert("Solicitud guardada!");
+                            this.loadCambios();
+                            $('#requestModal').modal('hide');
+                        } else {
+                            alert("ingrese todos los datos respetando el formato.");
+                        }
                     })
 
                 }
