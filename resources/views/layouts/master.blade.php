@@ -70,12 +70,15 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" style="margin-left: 0px;">ProHealth - TeamD19</a>
+                <a class="navbar-brand" href="/" style="margin-left: 0px;">ProHealth - TeamD19</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
                     <li>
+                        @guest
+                            <a href="{{ route('login') }}"><i class="material-icons">person_outline</i></a>
+                        @else
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -85,6 +88,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                        @endguest
                     </li>
                     <!-- #END# Call Search -->
                 </ul>

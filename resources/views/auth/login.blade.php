@@ -2,10 +2,28 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="body">
+                    <h5>Nurses username</h5>
+                    <ul>
+                        <li>nurse0</li>
+                        <li>nurse1</li>
+                        <li>nurse2</li>
+                    </ul>
+                    <h5>Doctors username</h5>
+                    <ul>
+                        <li>doctor1</li>
+                        <li>doctor2</li>
+                    </ul>
+
+                    <h4>All passwords: 123</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <div class="card">
                 <div class="header">{{ __('Login') }}</div>
-
                 <div class="body">
                     <div class="row">
                         <div class="col-lg-12 col-md-12" style="padding: 50px;">
