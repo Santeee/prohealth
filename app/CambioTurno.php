@@ -10,6 +10,14 @@ class CambioTurno extends Model
     use SoftDeletes;
     
     protected $table = 'cambios_turnos';
+    protected $fillable = [
+        'dia',
+        'hora_comienzo',
+        'hora_fin',
+        'solicitante_id',
+        'receptor_id',
+        'sector_id'
+    ];
 
     public function solicitante()
     {
