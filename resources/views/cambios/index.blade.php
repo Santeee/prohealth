@@ -164,6 +164,7 @@
 
 @section('scripts')
     <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script>
@@ -206,8 +207,6 @@
                             alert("ingrese todos los datos respetando el formato.");
                         }
                     })
-
-                   
                 },
                 loadCambios: function(){
                     fetch('/cambios', {
@@ -221,7 +220,14 @@
                 },
                 showModalCambio: function(){
                     this.fecha_solicitud = $('#dd').val();
+
+                    if (this.fecha_solicitud == ''){
+                        alert('Choose a date.');
+                        return false;
+                    }
+
                     $('#requestModal').modal('show');
+
                 },
                 solicitarCambio: function(e){
                     e.preventDefault();
@@ -263,9 +269,9 @@
         $('#bs_datepicker_container input').datepicker({
             autoclose: true,
             container: '#bs_datepicker_container'
-        });
+        }); 
         $(function () {
-    $('select').selectpicker();
-});
+            $('select').selectpicker();
+        });
     </script>
 @endsection
