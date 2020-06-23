@@ -142,11 +142,13 @@
                                     <label for="password_2">Sector:</label>
                                 </div>
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                    <select class="selectpicker" id="sector_id" name="sector_id">
-                                        @foreach ($sectores as $sector)
-                                            <option value="{{ $sector->id }}">{{ $sector->nombre }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <select id="sector_id" name="sector_id" style="margin-top: 10px;">
+                                            @foreach ($sectores as $sector)
+                                                <option value="{{ $sector->id }}">{{ $sector->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -269,9 +271,6 @@
         $('#bs_datepicker_container input').datepicker({
             autoclose: true,
             container: '#bs_datepicker_container'
-        }); 
-        $(function () {
-            $('select').selectpicker();
         });
     </script>
 @endsection

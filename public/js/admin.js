@@ -308,7 +308,7 @@ $.AdminBSB.input = {
 */
 $.AdminBSB.select = {
     activate: function () {
-        if ($.fn.selectpicker) { $('select:not(.ms)').selectpicker(); }
+        // if ($.fn.selectpicker) { $('select:not(.ms)').selectpicker(); }
     }
 }
 //==========================================================================================================================
@@ -462,7 +462,7 @@ $(function () {
     $.AdminBSB.navbar.activate();
     $.AdminBSB.dropdownMenu.activate();
     $.AdminBSB.input.activate();
-    $.AdminBSB.select.activate();
+    // $.AdminBSB.select.activate();
     $.AdminBSB.search.activate();
 
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
