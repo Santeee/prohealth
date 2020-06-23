@@ -46,7 +46,7 @@ THANK YOU
 
 -Halana Brito - Dental Student
 
--Santiago Aguilar - Systems Analsyt
+-Santiago Aguilar - Systems Analyst
 
 ## License
 
