@@ -166,7 +166,12 @@
 
 @section('scripts')
     <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+    <script src="/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    <script src="/plugins/jquery-inputmask/inputmask/jquery.inputmask.js"></script>
+    <script src="/plugins/jquery-inputmask/inputmask/inputmask.extensions.js"></script>
+    <script src="/plugins/jquery-inputmask/inputmask/inputmask.numeric.extensions.js"></script>
+    <script src="/plugins/jquery-inputmask/inputmask/inputmask.date.extensions.js"></script>
+    <script src="/plugins/jquery-inputmask/inputmask/inputmask.regex.extensions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script>
@@ -251,7 +256,6 @@
                     })
                     .then(res => res.json() )
                     .then(data => {
-                        console.log(data);
                         if (data.id) {
                             alert("Solicitud guardada!");
                             this.loadCambios();
@@ -272,5 +276,7 @@
             autoclose: true,
             container: '#bs_datepicker_container'
         });
+        $("#hora_comienzo").inputmask("hh:mm");
+        $("#hora_fin").inputmask("hh:mm");
     </script>
 @endsection
