@@ -36,9 +36,9 @@ THANK YOU
 
 #TEAM_D_019
 
-## About
+## Demo
 
-Demo: http://gruapp.com.ar
+http://gruapp.com.ar
 
 ## Contributing
 
