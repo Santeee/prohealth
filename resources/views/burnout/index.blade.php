@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
             <a href="{{ route('index') }}" class="btn btn-link">< Back</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="head">
                     <div class="row">
