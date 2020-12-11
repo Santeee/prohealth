@@ -38,13 +38,13 @@ THANK YOU
 
 ## Demo
 
-http://gruapp.com.ar
+Sorry, but the server where is the demo is down.
 
 ## Contributing
 
 -Ana Lisa Andrada Oliveira - Medical Student
 
--Carolina Montoya Torres - Industrial Enginner
+-Carolina Montoya Torres - Industrial Enginner (https://www.linkedin.com/in/ingcaromontoya/)
 
 -Geraldo Milet - Innovation Coordinator
 
